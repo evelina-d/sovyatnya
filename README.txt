@@ -2,6 +2,7 @@ Owly — дневник чтения (веб-приложение)
 
 Файлы для загрузки на GitHub Pages (все лежат в корне, без папок):
 index.html, app.js, sw.js, manifest.webmanifest, icon-180.png, icon-192.png, icon-512.png
+(картинки owl-*.jpg из прошлой версии больше не нужны — их можно удалить из репозитория)
 
 1. github.com → зарегистрироваться → «+» → New repository → имя sovyatnya → Public → Create.
 2. «uploading an existing file» → выбрать все 7 файлов → Commit changes.
