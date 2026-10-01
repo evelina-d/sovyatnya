@@ -12,3 +12,6 @@ index.html, app.js, sw.js, manifest.webmanifest, icon-180.png, icon-192.png, ico
 6. Открыть Owly с иконки → Настройки → Резервная копия → восстановить копию из Claude.
 
 Обновление: загрузить новые файлы в тот же репозиторий (Add file → Upload files) с заменой. Данные не пропадут.
+
+Шрифты встроены (SIL Open Font License, ParaType): заголовки — Gogol (Gogol.woff2), текст и цифры — PT Mono (PTMono-cyr.woff2, PTMono-lat.woff2). Лицензии: Gogol-LICENSE.txt, PTMono-LICENSE.txt.
+Файлы PTSerif-*.woff2 и PTSerif-LICENSE.txt больше не нужны — их можно удалить из репозитория.

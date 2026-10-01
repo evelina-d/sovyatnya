@@ -1,5 +1,5 @@
-const CACHE = "sovyatnya-202609291309";
-const SHELL = ["./", "./index.html", "./app.js", "./manifest.webmanifest", "./icon-180.png", "./icon-192.png", "./icon-512.png"];
+const CACHE = "sovyatnya-202609302306";
+const SHELL = ["./", "./index.html", "./app.js", "./manifest.webmanifest", "./icon-180.png", "./icon-192.png", "./icon-512.png", "./Gogol.woff2", "./PTMono-cyr.woff2", "./PTMono-lat.woff2"];
 self.addEventListener("install", (e) => { e.waitUntil(caches.open(CACHE).then((c) => c.addAll(SHELL))); self.skipWaiting(); });
 self.addEventListener("activate", (e) => {
   e.waitUntil(caches.keys().then((ks) => Promise.all(ks.filter((k) => k !== CACHE && k.startsWith("sovyatnya-") ).map((k) => caches.delete(k)))));
