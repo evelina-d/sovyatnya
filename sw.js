@@ -1,4 +1,4 @@
-const CACHE = "sovyatnya-202610011246";
+const CACHE = "sovyatnya-202610060804";
 const SHELL = ["./", "./index.html", "./app.js", "./manifest.webmanifest", "./icon-180.png", "./icon-192.png", "./icon-512.png", "./Gogol.woff2", "./owl-body.webp", "./owl-wing-l.webp", "./owl-wing-r.webp", "./owl-eyes-closed.webp", "./PTMono-cyr.woff2", "./PTMono-lat.woff2"];
 self.addEventListener("install", (e) => { e.waitUntil(caches.open(CACHE).then((c) => c.addAll(SHELL))); self.skipWaiting(); });
 self.addEventListener("activate", (e) => {
