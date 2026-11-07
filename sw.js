@@ -1,4 +1,4 @@
-const CACHE = "sovyatnya-202610280724";
+const CACHE = "sovyatnya-202611012132";
 const SHELL = ["./", "./index.html", "./app.js", "./manifest.webmanifest", "./icon-180.png", "./icon-192.png", "./icon-512.png", "./Gogol.woff2", "./owl-body.webp", "./owl-wing-l.webp", "./owl-wing-r.webp", "./owl-eyes-closed.webp", "./PTMono-cyr.woff2", "./PTMono-lat.woff2"];
 self.addEventListener("install", (e) => { e.waitUntil(caches.open(CACHE).then((c) => c.addAll(SHELL))); self.skipWaiting(); });
 self.addEventListener("activate", (e) => {
@@ -9,6 +9,7 @@ self.addEventListener("fetch", (e) => {
   const req = e.request;
   if (req.method !== "GET") return;
   const url = new URL(req.url);
+  if (url.origin === location.origin && url.pathname.startsWith("/api/")) return; // sync API: never cache
   // app files: network first (get updates), cache when offline
   if (url.origin === location.origin) {
     e.respondWith(fetch(req, { cache: "no-cache" }).then((r) => { const cp = r.clone(); if (r.ok) caches.open(CACHE).then((c) => c.put(req, cp)); return r; }).catch(() => caches.match(req, { ignoreSearch: true }).then((m) => m || caches.match("./index.html"))));
