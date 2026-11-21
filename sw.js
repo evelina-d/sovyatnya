@@ -1,4 +1,4 @@
-const CACHE = "sovyatnya-202611211329";
+const CACHE = "sovyatnya-202611211339";
 const SHELL = ["./", "./index.html", "./app.js", "./manifest.webmanifest", "./icon-180.png", "./icon-192.png", "./icon-512.png", "./Gogol.woff2", "./owl-body.webp", "./owl-wing-l.webp", "./owl-wing-r.webp", "./owl-eyes-closed.webp", "./grow-egg.webp", "./grow-crack.webp", "./grow-hatch.webp", "./grow-hatch-c.webp", "./grow-chick.webp", "./grow-chick-c.webp", "./grow-owlet.webp", "./grow-owlet-c.webp", "./PTMono-cyr.woff2", "./PTMono-lat.woff2"];
 const OPTIONAL = ["./owly-config.js"];
 self.addEventListener("install", (e) => { e.waitUntil(caches.open(CACHE).then((c) => c.addAll(SHELL).then(() => Promise.all(OPTIONAL.map((u) => c.add(u).catch(() => {})))))); self.skipWaiting(); });
