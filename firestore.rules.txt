@@ -1,9 +1,27 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    // each reader sees and changes only their own diary
+    // личный дневник: только сам владелец
     match /users/{uid}/{document=**} {
       allow read, write: if request.auth != null && request.auth.uid == uid;
+    }
+    // общий каталог книг: читать могут все, добавлять — вошедшие пользователи,
+    // чужие записи можно только дополнить недостающим, но не менять и не удалять
+    match /catalog/{id} {
+      allow read: if true;
+      allow create: if request.auth != null && validBook(request.resource.data);
+      allow update: if request.auth != null && validBook(request.resource.data)
+        && request.resource.data.diff(resource.data).changedKeys().size() == 0
+        && request.resource.data.diff(resource.data).removedKeys().size() == 0
+        && request.resource.data.diff(resource.data).addedKeys().hasOnly(['cover', 'coverData', 'pages', 'duration', 'isbn', 'genre', 'series', 'seriesNo', 'author']);
+      allow delete: if false;
+    }
+    function validBook(d) {
+      return d.keys().hasOnly(['title', 'author', 'format', 'pages', 'duration', 'isbn', 'genre', 'series', 'seriesNo', 'cover', 'coverData', 'words', 'at'])
+        && d.title is string && d.title.size() > 0 && d.title.size() <= 300
+        && (!('coverData' in d) || (d.coverData is string && d.coverData.size() < 400000))
+        && (!('cover' in d) || (d.cover is string && d.cover.size() < 1500))
+        && (!('words' in d) || (d.words is list && d.words.size() <= 150));
     }
   }
 }
